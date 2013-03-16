@@ -1,4 +1,4 @@
-# renameregex 1.0
+# renameregex
 
 Renames all files in the current directory using regular expression patterns.
 
@@ -27,7 +27,6 @@ Okay? [y/N] y
 * Java Development Kit (JDK) / **javac**
 * **bash**
     * *Only one line needs to be changed to work with other shells.*
-* **make**
 
 ## Installation
 
@@ -45,7 +44,7 @@ $ echo 'export PATH="$PATH:$HOME/bin/renameregex"' >> ~/.profile
 
 <tt>**renameregex** *filename_regex* *replacement_pattern*</tt>
 
-Rename all files in the current directory that match the pattern *filename_regex* to a new name based on the *replacement_pattern*.
+Renames all files in the current directory that match the pattern *filename_regex* to a new name based on the *replacement_pattern*.
 
 Before the rename is applied, a preview is printed of what files will be renamed and what they well be renamed to.
 
