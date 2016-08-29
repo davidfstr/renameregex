@@ -1,7 +1,1 @@
-#!/bin/sh
-
-# Locate current directory.
-# NOTE: This implementation is bash-specific.
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-java -classpath "$SCRIPT_DIR" renameregex "$1" "$2"
+renameregex.py

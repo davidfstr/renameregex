@@ -2,12 +2,12 @@
 
 Renames all files in the current directory using regular expression patterns.
 
-For example `renameregex '(.*)\.JPG' '$1\.jpg` will rename all files that end with `.JPG` to end with `.jpg`.
+For example `renameregex '(.*)\.JPG' '\1\.jpg'` will rename all files that end with `.JPG` to end with `.jpg`.
 
 Real-world example:
 
 ```
-[davidf Letters]$ renameregex '(.*?) *\((.*)\)(.*)' '$2 - $1$3'
+[davidf Letters]$ renameregex '(.*?) *\((.*)\)(.*)' '\2 - \1\3'
 
 Letter to Arlene (2010-08-18).JPG => 2010-08-18 - Letter to Arlene.JPG
 Letter to Arlene (2010-08-18).rtf => 2010-08-18 - Letter to Arlene.rtf
@@ -21,12 +21,12 @@ Letter-Photo (2011-03-03).graffle => 2011-03-03 - Letter-Photo.graffle
 Okay? [y/N] y
 ```
 
+It is also possible to specify `-r` to search subdirectories recursively for files to rename.
+
 ## Requirements
 
 * OS X or Linux
-* Java Development Kit (JDK) / **javac**
-* **bash**
-    * *Only one line needs to be changed to work with other shells.*
+* Python 3.4 or later
 
 ## Installation
 
@@ -35,8 +35,6 @@ $ mkdir -p ~/bin
 $ cd ~/bin
 $ git clone https://github.com/davidfstr/renameregex.git
       # ...or download this repository to ~/bin/renameregex
-$ cd renameregex
-$ make
 $ echo 'export PATH="$PATH:$HOME/bin/renameregex"' >> ~/.profile
 ```
 
@@ -50,13 +48,25 @@ Before the rename is applied, a preview is printed of what files will be renamed
 
 ### Arguments
 
-* *filename_regex* &mdash; A Perl-compatible regular expression (PCRE), specifically a [Java regular expression], that is used to identify files to rename.
+* *filename_regex* &mdash; A Perl-compatible regular expression (PCRE), specifically a [Python regular expression], that is used to identify files to rename.
 
-* *replacement_pattern* &mdash; A [Java regex replacement string] used to generate the new filenames. Expressions like `$1` and `$2` can be used to refer to groups matched by *filename_regex*.
+* *replacement_pattern* &mdash; A [Python regex replacement string] used to generate the new filenames. Expressions like `\1` and `\2` can be used to refer to groups matched by *filename_regex*.
 
-[Java regular expression]: http://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+[Python regular expression]: https://docs.python.org/3.4/library/re.html#regular-expression-syntax
 
-[Java regex replacement string]: http://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#appendReplacement(java.lang.StringBuffer,%20java.lang.String)
+[Python regex replacement string]: https://docs.python.org/3.4/library/re.html#re.sub
+
+## Changelog
+
+* 2.0
+    * Features:
+        * Add -r option to search directories recursively.
+    * Breaking Changes:
+        * Substitution patterns use the syntax `\1` rather than `$1` for backreferences.
+    * Internal Changes:
+        * Rewrite script in Python rather than Java.
+* 1.0
+    * Initial version.
 
 ## License
 
